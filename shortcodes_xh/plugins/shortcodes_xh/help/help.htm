@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>無題ドキュメント</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+<style>
+.content { margin-right: -1px; } /* この 1 ピクセルの負のマージンはこのレイアウトのどのカラムにも配置でき、同じ補正効果を持ちます。 */
+ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout をトリガーします。これは、リンク間の余分なホワイトスペースを修正するのに必要です。 */
+</style>
+<![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header"><a href="#"><img src="ShortCode_XH.png" width="120" height="120"></a> 
+    <!-- end .header --></div>
+  <div class="title">
+    ShortCode_XH
+  </div>
+  <div class="desc">
+    <p>This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">WordPress shortcode syntax</a> in CMSimple_XH. Supports enclosing shortcodes such as [myshortcode]content[/myshortcode]<br>
+      Basic usage is the same as WordPress Shortcode API <br>
+    <span lang="en"></span></p>
+  </div>
+  <div class="clearfloat"></div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="help.htm#notice">Important Notice</a></li>
+        <li><a href="help.htm#requirements">Requirements</a></li>
+        <li><a href="help.htm#installation">Installation</a></li>
+        <li><a href="help.htm#settings">Settings</a></li>
+        <li><a href="help.htm#usage">Usage</a></li>
+        <li><a href="help.htm#limitations">Limitations</a></li>
+        <li><a href="help.htm#license">License</a></li>
+        <li><a href="help.htm#filelist">Function List</a></li></ul>
+  <!-- end .sidebar1 --></div>
+  <div class="content">
+    <div id="body">
+      <p><strong>Please do read this documentation, <em>before</em> you encounter any problems!</strong></p>
+      <h2><a name="notice">Important Notice</a></h2>
+      <p><strong>The current version is merely a draft. Everything might change, and  there may be severe bugs and limitations as it is barely tested. It is a so  called alpha version. Use with utmost caution!</strong></p>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="requirements">Requirements</a></h2>
+      <p>ShortCode_XH is a plugin for CMSimple_XH.  <br>
+      </p>
+
+      <p>&nbsp;</p>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="installation">Installation</a></h2>
+      <p>The installation is done as with many other CMSimple_XH plugins.  See the <a href="http://www.cmsimple-xh.org/wiki/doku.php/installation"> CMSimple_XH wiki</a> for further details.</p>
+      <ol>
+        <li><strong>Backup the data on your server.</strong></li>
+        <li>Unzip the distribution on your computer.</li>
+        <li>Upload the whole directory to your server into the CMSimple_XH directory.
+        <br>
+        <ul>
+          <li>plugins/shortcodes_xh/* ----&gt; plugins/shortcodes_xh/*.</li>
+          <li>cmsimple/userfuncs.php ---&gt; cmsimple/userfuncs.php<br>
+          * if you have already have a userfuncs.php, please copy the source code. Very simple code.</li>
+        </ul>
+        </li>
+        <li><font COLOR="#ff0000">Open your template.htm ,Change</font><font COLOR="#cc0000"> </font><br>
+        <font COLOR="#ff0000">content() --&gt; xh_content()</font></li>
+      </ol>
+      <h4>&nbsp;</h4>
+      <h4>Sample ShortCode:(designed as a class)</h4>
+      <ol>
+        <li>Upload
+        <ul>
+          <li>sample_shortcode/plugins/sc_sampleshortcode/* ---&gt; plugins/sc_sampleshortcode/</li>
+        </ul>
+        </li>
+        <li>Edit your CMSimple's Page .
+        <ol>
+          <li>Copy &amp; Paset ( See .. plugins/sc_sampleshortcode/readme.txt)<br>
+          <pre>
+          [sample_hello]<br>
+          <br>
+          [sample_hello2]<br>
+          [sample_hello2 name=&quot;Yorname&quot; myname=&quot;Jone&quot;]<br>
+          <br>
+          [sample_url href=&quot;http://www.cmsimple-xh.org&quot;]Site[/sample_url]<br>
+          <br>
+          [sample_htag no=&quot;1&quot;]h1 ABCDE[/sample_htag]<br>
+          <br>
+          [sample_htag no=&quot;2&quot;]h2 ABCDE[/sample_htag]<br>
+          <br>
+          [sample_class color=&quot;#f00&quot; size=&quot;5px&quot;]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
+          <br>
+          [sample_class]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
+          <br>
+          [sample_class color=&quot;#0f0&quot; size=&quot;20px&quot;]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
+          <br>
+          [sample_hide]This text is only an administrator can see [/sample_hide]</pre>
+          </li>
+        </ol>
+        </li>
+      </ol>
+      
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="settings">Settings</a></h2>
+      <p>Select &quot;Shortcodes_xh&quot; from &quot;Plugins&quot;.</p>
+      <ol>
+      </ol>
+      <ol>
+        <li>"Language" select ,set your <span id="result_box" lang="en">Translation</span>.
+        </li>
+      </ol>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="usage">Usage</a></h2>
+      <p>See </p>
+      <ul>
+        <li><a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Wordpress Shortcode API </a>
+        <li><a href="https://codex.wordpress.org/Function_Reference/add_shortcode" target="_blank">Function Reference/add shortcode </a>
+        <li><a href="https://generatewp.com/shortcodes/" target="_blank">WordPress Shortcodes Generator </a>
+      </ul>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="limitations">Limitations</a></h2>
+      <blockquote>
+  <p>The parser does not handle mixing of enclosing and non-enclosing forms
+      of the <font COLOR="#ff0000">same</font> shortcode as you would want it to. For example, if you have:</p>
+  
+  <p><code>[myshortcode example='non-enclosing' /] non-enclosed content [myshortcode] enclosed content
+  [/myshortcode]</code></p>
+  
+  <p>Instead of being treated as two shortcodes separated by the text " non-enclosed content ",
+  the parser treats this as a single shortcode enclosing " non-enclosed content [myshortcode]
+  enclosed content".<br>
+      <br>
+      The parser will fail if a shortcode macro is used to enclose another macro
+      of the same name<br>
+      *see <a href="http://codex.wordpress.org/Shortcode_API#Nested_Shortcodes" target="_blank">#Nested_Shortcodes</a>.</p>
+</blockquote>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2><a name="license">License</a></h2>
+      <ul>
+        <li></li>
+        <li>Software License terms<br>
+         <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPLv3</a>.</li>
+      </ul>
+      <p>© 2015 T. Uchiyama</p>
+      <div>
+        <div align="right"><a href="help.htm#">back to top</a></div>
+      </div>
+      <h2>&nbsp;</h2>
+      <div></div>
+    </div>
+    <h1><a id="filelist"></a> Function List</h1>
+    <p class="filelist">/** shortcodes_xh.php **/<br>
+ add_shortcode($tag, $func) <br>
+ remove_shortcode($tag)<br>
+ remove_all_shortcodes()<br>
+ shortcode_exists( $tag )<br>
+ has_shortcode( $content, $tag )<br>
+ do_shortcode( $content, $ignore_html = false )<br>
+ get_shortcode_regex( $tagnames = null )<br>
+ do_shortcode_tag( $m )<br>
+ unescape_invalid_shortcodes( $content ) <br>
+ get_shortcode_atts_regex()<br>
+ strip_shortcodes( $content )<br>
+ strip_shortcode_tag( $m )<br>
+<br>
+    do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) <br>
+ shortcode_atts( $pairs, $atts, $shortcode = '' )<br>
+<br>
+/** Core ***/<br>
+ plugins\shortcodes_xh\class\shortcodes.php<br>
+      <br>
+    </p>
+    <p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+    <p align="center"><a href="http://cmsimple-jp.org" target="_blank">CMSimple-jp.org</a></p>
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+</body>
+</html>
