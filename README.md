@@ -17,7 +17,8 @@ content() --> xh_content()
 
 
 ## Function List
-
+global $badcow_shortcode  
+  
 /** plugins\shortcodes_xh\class\shortcodes_xh.php **/  
  add_shortcode($tag, $func)  
  remove_shortcode($tag)  
