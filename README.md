@@ -37,9 +37,12 @@ global $badcow_shortcode
  shortcode_atts( $pairs, $atts, $shortcode = '' )  
  
    
-
  /** Core ***/  
- plugins\shortcodes_xh\class\shortcodes.php
+ plugins\shortcodes_xh\class\shortcodes.php  
+ 
+ 
+   
+Original :Badcow/Shortcodes https://github.com/Badcow/Shortcodes  
 
 
 
