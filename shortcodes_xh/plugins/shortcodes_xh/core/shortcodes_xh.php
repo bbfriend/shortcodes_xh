@@ -2,12 +2,12 @@
 /**** CMSimple_XH  shortcodes_xh.php
  * include from cmsimple/userfuncs.php
  * @package   shortcodes_xh
- * @author    Takashi Uchiyama <http://cmsimple-xh.org/>
+ * @author    Takashi Uchiyama <http://cmsimple-jp.org/>
  *
  * Original :WordPress Ver4.4
 ***/
 /**
- * WordPress API for creating bbcode like tags or what WordPress calls
+ * CMSimple_XH API for creating bbcode like tags or what CMSimple_XH calls
  * "shortcodes." The tag and attribute parsing or regular expression code is
  * based on the Textpattern tag parser.
  *
@@ -21,26 +21,17 @@
  * support inline shortcodes in other shortcodes. You will have to call the
  * shortcode parser in your function to account for that.
  *
- * {@internal
- * Please be aware that the above note was made during the beta of WordPress 2.6
- * and in the future may not be accurate. Please update the note when it is no
- * longer the case.}}
- *
  * To apply shortcode tags to content:
  *
  *     $out = do_shortcode( $content );
  *
  * @link https://codex.wordpress.org/Shortcode_API
  *
- * @package WordPress
  * @subpackage Shortcodes
- * @since 2.5.0
  */
 
 /**
  * Container for storing shortcode tags and their hook to call for the shortcode
- *
- * @since 2.5.0
  *
  * @name $shortcode_tags
  * @var array
@@ -86,8 +77,6 @@ $shortcode_tags = array();
  *     }
  *     add_shortcode( 'baztag', 'baztag_func' );
  *
- * @since 2.5.0
- *
  * @global array $shortcode_tags
  *
  * @param string   $tag  Shortcode tag to be searched in post content.
@@ -101,8 +90,6 @@ function add_shortcode($tag, $func) {
 
 /**
  * Removes hook for shortcode.
- *
- * @since 2.5.0
  *
  * @global array $shortcode_tags
  *
@@ -121,8 +108,6 @@ function remove_shortcode($tag) {
  * shortcodes global by a empty array. This is actually a very efficient method
  * for removing all shortcodes.
  *
- * @since 2.5.0
- *
  * @global array $shortcode_tags
  */
 function remove_all_shortcodes() {
@@ -133,8 +118,6 @@ function remove_all_shortcodes() {
 
 /**
  * Whether a registered shortcode exists named $tag
- *
- * @since 3.6.0
  *
  * @global array $shortcode_tags List of shortcode tags and their callback hooks.
  *
@@ -149,8 +132,6 @@ function shortcode_exists( $tag ) {
 
 /**
  * Whether the passed content contains the specified shortcode
- *
- * @since 3.6.0
  *
  * @global array $shortcode_tags
  *
@@ -171,8 +152,6 @@ function has_shortcode( $content, $tag ) {
  * If there are no shortcode tags defined, then the content will be returned
  * without any filtering. This might cause issues when plugins are disabled but
  * the shortcode will still show up in the post or content.
- *
- * @since 2.5.0
  *
  * @global array $shortcode_tags List of shortcode tags and their callback hooks.
  *
@@ -201,8 +180,6 @@ function do_shortcode( $content, $ignore_html = false ) {
  * 5 - The content of a shortcode when it wraps some content.
  * 6 - An extra ] to allow for escaping shortcodes with double [[]]
  *
- * @since 2.5.0
- *
  * @global array $shortcode_tags
  *
  * @param array $tagnames List of shortcodes to find. Optional. Defaults to all registered shortcodes.
@@ -218,7 +195,6 @@ function get_shortcode_regex( $tagnames = null ) {
  * Regular Expression callable for do_shortcode() for calling shortcode hook.
  * @see get_shortcode_regex for details of the match array contents.
  *
- * @since 2.5.0
  * @access private
  *
  * @global array $shortcode_tags
@@ -240,8 +216,6 @@ function do_shortcode_tag( $m ) {
  * to prevent interference with shortcodes that are outside the elements.
  * Assumes $content processed by KSES already.  Users with unfiltered_html
  * capability may get unexpected output if angle braces are nested in tags.
- *
- * @since 4.2.3
  *
  * @param string $content Content to search for shortcodes
  * @param bool $ignore_html When true, all square braces inside elements will be encoded.
@@ -342,8 +316,6 @@ function do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) {
 /**
  * Remove placeholders added by do_shortcodes_in_html_tags().
  *
- * @since 4.2.3
- *
  * @param string $content Content to search for placeholders.
  * @return string Content with placeholders removed.
  */
@@ -358,8 +330,6 @@ function unescape_invalid_shortcodes( $content ) {
 /**
  * Retrieve the shortcode attributes regex.
  *
- * @since 4.4.0
- *
  * @return string The shortcode attribute regular expression
  */
 function get_shortcode_atts_regex() {
@@ -372,8 +342,6 @@ function get_shortcode_atts_regex() {
  * The attributes list has the attribute name as the key and the value of the
  * attribute as the value in the key/value pair. This allows for easier
  * retrieval of the attributes, since all attributes have to be known.
- *
- * @since 2.5.0
  *
  * @param string $text
  * @return array|string List of attribute values.
@@ -397,8 +365,6 @@ function shortcode_parse_atts($text) {
  * If the $atts list has unsupported attributes, then they will be ignored and
  * removed from the final returned list.
  *
- * @since 2.5.0
- *
  * @param array  $pairs     Entire list of supported attributes and their defaults.
  * @param array  $atts      User defined attributes in shortcode tag.
  * @param string $shortcode Optional. The name of the shortcode, provided for context to enable filtering
@@ -419,9 +385,6 @@ function shortcode_atts( $pairs, $atts, $shortcode = '' ) {
 	 * If the third parameter of the shortcode_atts() function is present then this filter is available.
 	 * The third parameter, $shortcode, is the name of the shortcode.
 	 *
-	 * @since 3.6.0
-	 * @since 4.4.0 Added the `$shortcode` parameter.
-	 *
 	 * @param array  $out       The output array of shortcode attributes.
 	 * @param array  $pairs     The supported attributes and their defaults.
 	 * @param array  $atts      The user defined shortcode attributes.
@@ -436,8 +399,6 @@ function shortcode_atts( $pairs, $atts, $shortcode = '' ) {
 
 /**
  * Remove all shortcode tags from the given content.
- *
- * @since 2.5.0
  *
  * @global array $shortcode_tags
  *
@@ -460,4 +421,61 @@ function strip_shortcode_tag( $m ) {
 	global $badcow_shortcode;
 
 	return $badcow_shortcode -> stripShortcodeTag($m);
+}
+
+#/**
+# * Don't auto-p wrap shortcodes that stand alone
+# *
+# * Ensures that shortcodes are not wrapped in `<p>...</p>`.
+# *
+# * wordpress/wp-includes/formatting.php  @since 2.9.0
+# *
+# * @param string $pee The content.
+# * @return string The filtered content.
+# */
+function shortcode_unautop( $pee ) {
+	global $badcow_shortcode;
+	$shortcode_tags = (array)$badcow_shortcode;
+
+	if ( empty( $shortcode_tags ) || !is_array( $shortcode_tags ) ) {
+		return $pee;
+	}
+
+	$tagregexp = join( '|', array_map( 'preg_quote', array_keys( $shortcode_tags ) ) );
+//	$spaces = wp_spaces_regexp();
+	$spaces = '[\r\n\t ]|\xC2\xA0|&nbsp;';
+
+	$pattern =
+		  '/'
+		. '<p>'                              // Opening paragraph
+		. '(?:' . $spaces . ')*+'            // Optional leading whitespace
+		. '('                                // 1: The shortcode
+		.     '\\['                          // Opening bracket
+		.     "($tagregexp)"                 // 2: Shortcode name
+		.     '(?![\\w-])'                   // Not followed by word character or hyphen
+		                                     // Unroll the loop: Inside the opening shortcode tag
+		.     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
+		.     '(?:'
+		.         '\\/(?!\\])'               // A forward slash not followed by a closing bracket
+		.         '[^\\]\\/]*'               // Not a closing bracket or forward slash
+		.     ')*?'
+		.     '(?:'
+		.         '\\/\\]'                   // Self closing tag and closing bracket
+		.     '|'
+		.         '\\]'                      // Closing bracket
+		.         '(?:'                      // Unroll the loop: Optionally, anything between the opening and closing shortcode tags
+		.             '[^\\[]*+'             // Not an opening bracket
+		.             '(?:'
+		.                 '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
+		.                 '[^\\[]*+'         // Not an opening bracket
+		.             ')*+'
+		.             '\\[\\/\\2\\]'         // Closing shortcode tag
+		.         ')?'
+		.     ')'
+		. ')'
+		. '(?:' . $spaces . ')*+'            // optional trailing whitespace
+		. '<\\/p>'                           // closing paragraph
+		. '/s';
+
+	return preg_replace( $pattern, '$1', $pee );
 }

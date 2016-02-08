@@ -20,23 +20,7 @@
 
 function Shortcodes_view()
 {
-    global $sn, $su, $plugin_tx, $pth, $onload, $bjs;
-
-//    $bjs .= <<<EOT
-// <script type="text/javascript">/* <![CDATA[ */
-//var SHORT_CODES_VIEW = {};
-
-//SHORT_CODES_VIEW.init = function () {
-// 
-// 
-
-// 
-// 
-// 
-//};
-// /* ]]> */</script>
-//EOT;
-//    $onload .= 'SHORT_CODES_VIEW.init();';
+    global $sn, $su, $plugin_tx, $pth,$plugin_cf;
 
 	global $badcow_shortcode;
 

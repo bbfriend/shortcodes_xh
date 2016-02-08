@@ -1,27 +1,18 @@
-set
-1:Unzip
-
-2:plugins/shortcodes_xh/* ----> plugins/shortcodes_xh/*
-
-3:cmsimple/userfuncs.php ---> cmsimple/userfuncs.php
-  * if you have already have a userfuncs.php, please copy the source code. Very simple code.
-
-4:Open your template.htm
-   content() --> xh_content()
- example.
-          <?php echo content();?>
-   to
-          <?php echo xh_content();?>
+/**
+ * shortcodes_xh 
+ *
+ * This plugin is to use the familiar WordPress shortcode syntax in CMSimple_XH. 
+ * index.php is called by pluginloader and returns (X)HTML META ELEMENTS to template.
+ *
+ * PHP versions 5
+ *
+ * @category  CMSimple_XH
+ * @package   shortcodes_xh
+ * @author    Takashi Uchiyama <http://cmsimple-jp.org/>
+***/
 
 
-
-
-
-
-
-
-
-====Original writer===
+====writer:plugins/shortcodes_xh/core/Shortcodes.php==
 Badcow Shortcodes
 https://github.com/Badcow/Shortcodes
 =====================

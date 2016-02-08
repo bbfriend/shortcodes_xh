@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>無題ドキュメント</title>
+<title>ShortCode_XH</title>
 <link href="stylesheet.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
-.content { margin-right: -1px; } /* この 1 ピクセルの負のマージンはこのレイアウトのどのカラムにも配置でき、同じ補正効果を持ちます。 */
-ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout をトリガーします。これは、リンク間の余分なホワイトスペースを修正するのに必要です。 */
+.content { margin-right: -1px; } 
+ul.nav a { zoom: 1; }  
 </style>
 <![endif]-->
 </head>
@@ -60,44 +60,83 @@ ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout を�
         <li>Upload the whole directory to your server into the CMSimple_XH directory.
         <br>
         <ul>
-          <li>plugins/shortcodes_xh/* ----&gt; plugins/shortcodes_xh/*.</li>
-          <li>cmsimple/userfuncs.php ---&gt; cmsimple/userfuncs.php<br>
+          <li>cmsimple/add_to_userfuncs.php ---&gt; cmsimple/userfuncs.php<br>
           * if you have already have a userfuncs.php, please copy the source code. Very simple code.</li>
+          <li>plugins/shortcodes_xh/* ----&gt; plugins/shortcodes_xh/*.</li>
         </ul>
         </li>
-        <li><font COLOR="#ff0000">Open your template.htm ,Change</font><font COLOR="#cc0000"> </font><br>
-        <font COLOR="#ff0000">content() --&gt; xh_content()</font></li>
+        <li><font COLOR="#ff0000">Open cmsimple/tplfuncs.php</font><font COLOR="#cc0000"> </font><br>
+        <font COLOR="#ff0000">And Find  ･･･in function content()&quot; ,about Line540 </font><br>
+ <br>
+        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);<br>
+<br>
+        <font COLOR="#ff0000">1 line added to the previous/Before </font><br>
+<br>
+		$c[$s] = do_shortcode($c[$s]); // Add for shortcode_xh<br>
+<br>
+<br>
+        = Result (final code) New function content() ===========
+<pre>
+function content()
+{
+    global $s, $o, $c, $edit,  $cf ; 
+
+    if (!($edit && XH_ADM) && $s > -1) {
+        if (isset($_GET['search'])) {
+            $search = XH_hsc(stsl($_GET['search']));
+            $words = explode(' ', $search);
+            $c[$s] = XH_highlightSearchWords($words, $c[$s]);
+        }
+
+        $c[$s] = do_shortcode($c[$s]);// Add for shortcode_xh
+
+        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
+    } else {
+        return $o;
+    }
+}</pre></li>
       </ol>
       <h4>&nbsp;</h4>
-      <h4>Sample ShortCode:(designed as a class)</h4>
+      <h4>Sample ShortCode</h4>
       <ol>
         <li>Upload
         <ul>
-          <li>sample_shortcode/plugins/sc_sampleshortcode/* ---&gt; plugins/sc_sampleshortcode/</li>
+          <li>Most simple & easy Shortcode,please View source.<br>
+*plugins/shortcodes_xh/shortcodes_library --> plugins/shortcodes_xh/shortcodes_library</li>
+          <li>Basic Shortcode,please View source.<br>
+*plugins/sc_SampleShortcode 				 --> plugins/sc_SampleShortcode</li>
+          <li>Adds shortcodes to easily create columns in your pages.<br>
+Original:<a href="https://ja.wordpress.org/plugins/column-shortcodes/" target="_blank">https://ja.wordpress.org/plugins/column-shortcodes/</a><br>
+*plugins/sc_column-shortcode				 --> plugins/sc_column-shortcodes</li>
+
+
         </ul>
         </li>
         <li>Edit your CMSimple's Page .
         <ol>
-          <li>Copy &amp; Paset ( See .. plugins/sc_sampleshortcode/readme.txt)<br>
+          <li>Copy &amp; Paset ( See .. Sample/README.txt)<br>
           <pre>
-          [sample_hello]<br>
-          <br>
-          [sample_hello2]<br>
-          [sample_hello2 name=&quot;Yorname&quot; myname=&quot;Jone&quot;]<br>
-          <br>
-          [sample_url href=&quot;http://www.cmsimple-xh.org&quot;]Site[/sample_url]<br>
-          <br>
-          [sample_htag no=&quot;1&quot;]h1 ABCDE[/sample_htag]<br>
-          <br>
-          [sample_htag no=&quot;2&quot;]h2 ABCDE[/sample_htag]<br>
-          <br>
-          [sample_class color=&quot;#f00&quot; size=&quot;5px&quot;]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
-          <br>
-          [sample_class]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
-          <br>
-          [sample_class color=&quot;#0f0&quot; size=&quot;20px&quot;]CMSimple_XH is conceived as a one administrator system. That's why we could keep it small and simple. [/sample_class]<br>
-          <br>
-          [sample_hide]This text is only an administrator can see [/sample_hide]</pre>
+= Sample Shortcode (plugins/shortcodes_xh/shortcodes_library/*)======
+[sample_hello]
+[sample_hello2]
+[sample_hello2 name="Yourname" myname="Myname"]
+[sample_hello3]
+[sample_hello3 name="Yourname" myname="Myname"]
+
+= 4type Shortcode (plugins/sc_SampleShortcode)======
+* 1:[y_url href="http://www.cmsimple-xh.org"]Site[/y_url]
+* 2: no=1,2,3,4,5 [y_htag no="1"]ABCDE[/y_htag]
+* 3:[y_class color="#00f" font-size="13px"]CMSimple_XH... [/y_class]
+* 4:[y_hide]This text is only login_user can see [/y_hide]
+
+= Column Shortcodes (plugins/sc_column-shortcodes)======
+[z_one_half]1/2 [/z_one_half][z_one_half_last]1/2 [/z_one_half_last]
+[z_one_third]1/3 [/z_one_third][z_one_third]1/3 [/z_one_third][z_one_third_last]1/3 [/z_one_third_last]
+[z_one_fourth]1/4[/z_one_fourth][z_one_fourth]1/4[/z_one_fourth][z_one_fourth]1/4[/z_one_fourth][z_one_fourth_last]1/4[/z_one_fourth_last]
+[z_one_fifth]1/5[/z_one_fifth][z_one_fifth]1/5[/z_one_fifth][z_one_fifth]1/5[/z_one_fifth][z_one_fifth]1/5[/z_one_fifth][z_one_fifth_last]1/5[/z_one_fifth_last]
+[z_one_half]1/2[/z_one_half][z_one_fourth]1/4[/z_one_fourth][z_one_fourth_last]1/4[/z_one_fourth_last]
+[z_two_third]2/3[/z_two_third][z_one_third_last] 1/3[/z_one_third_last]
+          </pre>
           </li>
         </ol>
         </li>
@@ -117,13 +156,18 @@ ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout を�
       <div>
         <div align="right"><a href="help.htm#">back to top</a></div>
       </div>
-      <h2><a name="usage">Usage</a></h2>
+      <h2><a name="usage">For Developer :Usage</a></h2>
       <p>See </p>
       <ul>
         <li><a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Wordpress Shortcode API </a>
         <li><a href="https://codex.wordpress.org/Function_Reference/add_shortcode" target="_blank">Function Reference/add shortcode </a>
         <li><a href="https://generatewp.com/shortcodes/" target="_blank">WordPress Shortcodes Generator </a>
       </ul>
+      <p>The location of the short code that you have created.</p>
+        <li>plugins/shortcodes_xh/shortcodes_library/<br>
+ shortcodes_library/* is ideal for the location of a simple short code .like plugins/shortcodes_xh/shortcodes_library/class_sample_hello2.php .
+        <li>plugins/<br>
+Complex short code that uses javascript and style, please be installed as New plugin ,like plugins/sc_column-shortcodes .
       <div>
         <div align="right"><a href="help.htm#">back to top</a></div>
       </div>
@@ -160,7 +204,10 @@ ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout を�
       <div></div>
     </div>
     <h1><a id="filelist"></a> Function List</h1>
-    <p class="filelist">/** shortcodes_xh.php **/<br>
+ It is equivalent to the function of wordpress.<a href="https://developer.wordpress.org/reference/" target="_blank">WordPress Developer Resources</a><br>
+For example, please look for add_shortcode ==><a href="https://developer.wordpress.org/reference/functions/add_shortcode/add_shortcode" target="_blank"> add_shortcode </a>
+    <p class="filelist">/** plugins\shortcodes_xh\core\shortcodes_xh.php **/<br>
+global $badcow_shortcode<br><br>
  add_shortcode($tag, $func) <br>
  remove_shortcode($tag)<br>
  remove_all_shortcodes()<br>
@@ -174,11 +221,13 @@ ul.nav a { zoom: 1; }  /* zoom プロパティにより、IE の hasLayout を�
  strip_shortcodes( $content )<br>
  strip_shortcode_tag( $m )<br>
 <br>
-    do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) <br>
+ shortcode_parse_atts($text)<br>
+ do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames ) <br>
  shortcode_atts( $pairs, $atts, $shortcode = '' )<br>
+ shortcode_unautop( $pee )<br>
 <br>
 /** Core ***/<br>
- plugins\shortcodes_xh\class\shortcodes.php<br>
+ plugins\shortcodes_xh\core\shortcodes.php<br>
       <br>
     </p>
     <p>&nbsp;</p>

@@ -35,13 +35,18 @@ define('SHORTCODES_XH_VERSION', '1.01');
 /*
  * Add a tab for admin-menu.
  */
-if($plugin_cf['shortcodes_xh']['tab_show'] =='true'){
+if($plugin_cf['shortcodes_xh']['tab_ListShow'] =='true'){
 	$pd_router->add_tab(
 	    $plugin_tx['shortcodes_xh']['tab'],
 	    $pth['folder']['plugins'] . 'shortcodes_xh/Shortcodes_view.php'
 	);
 }
-
+if($plugin_cf['shortcodes_xh']['tab_SimpleMemoShow'] =='true'){
+	$pd_router->add_tab(
+	    $plugin_tx['shortcodes_xh']['memo'] ,
+	    $pth['folder']['plugins'] . 'shortcodes_xh/Shortcodes_memo_view.php'
+	);
+}
 /*
  * read shortcodes_library.
  */

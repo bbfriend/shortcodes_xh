@@ -6,9 +6,12 @@
  *		[sample_hello2 name="Yourname" myname="Myname"]
  * Returen
  *	@return string
+ ***********************************************
+ * Recommend the use of class type. Please.
+ ***********************************************
  */
 
-if ( ! class_exists( 'Sample_hello2' ) ) {
+if ( ! class_exists( 'Sample_hello2' ) ) { //redeclare Check
 
 	class Sample_hello2 {
 
@@ -23,8 +26,8 @@ if ( ! class_exists( 'Sample_hello2' ) ) {
 
 			global $pth,$tx; //CMSimple_XH's Variables
 
-			$this->txdata  = &$tx;
-			$this->pthdata  = &$pth; 
+			$this->txdata  = &$tx; //contains all texts from the language system files of the used language
+			$this->pthdata  = &$pth; //system files and folders.http://www.cmsimple-xh.org/wiki/doku.php/core_variables#pth
 
 
 			add_shortcode( 'sample_hello2', array( $this, 'sample_hello2_func' ) );
