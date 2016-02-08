@@ -4,11 +4,17 @@ This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcod
 1:Unzip the distribution on your computer.  
 2:Upload the whole directory to your server into the CMSimple_XH directory.   
 ◦plugins/shortcodes_xh/* ----> plugins/shortcodes_xh/*.  
-◦cmsimple/userfuncs.php ---> cmsimple/userfuncs.php  
+◦cmsimple/add_to_userfuncs.php ---> cmsimple/userfuncs.php  
  * if you have already have a userfuncs.php, please copy the source code. Very simple code.  
 
-3:.Open your template.htm ,Change 
-content() --> xh_content()  
+3:.Open cmsimple/tplfuncs.php  
+   And Find in function content()" ,about Line540 
+ 
+        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
+
+   1 line added to the previous/Before 
+
+		$c[$s] = do_shortcode($c[$s]); // Add for shortcode_xh
 
 ## Usage  See..
 ◦ <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Wordpress Shortcode API </a>  
@@ -19,7 +25,7 @@ content() --> xh_content()
 ## Function List
 global $badcow_shortcode  
   
-/** plugins\shortcodes_xh\class\shortcodes_xh.php **/  
+/** plugins\shortcodes_xh\core\shortcodes_xh.php **/  
  add_shortcode($tag, $func)  
  remove_shortcode($tag)  
  remove_all_shortcodes()  
@@ -32,13 +38,15 @@ global $badcow_shortcode
  get_shortcode_atts_regex()  
  strip_shortcodes( $content )  
  strip_shortcode_tag( $m )  
-  
+   
+ shortcode_parse_atts( $tex t)  
  do_shortcodes_in_html_tags( $content, $ignore_html, $tagnames )   
  shortcode_atts( $pairs, $atts, $shortcode = '' )  
+ shortcode_unautop( $pee )    
  
    
  /** Core ***/  
- plugins\shortcodes_xh\class\shortcodes.php  
+ plugins\shortcodes_xh\core\shortcodes.php  
  
  
    
