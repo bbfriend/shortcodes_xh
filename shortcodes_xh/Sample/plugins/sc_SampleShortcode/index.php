@@ -51,6 +51,10 @@ if ( ! class_exists( 'Sample_shortcode' ) ) { //redeclare Check
 			 ***/
 			add_shortcode("y_hide", array( $this, 'sample_hide' ) );
 
+			/*****
+				5:[dpc]{{{test('aaaaa','bbbb');}}}[/dpc]
+			 ***/
+			add_shortcode("dpc", array( $this, 'display_plugin_code' ) );
 		}
 
 
@@ -116,6 +120,16 @@ EOS;
 		    } 
 		} 
 
+	/*****
+		 [dpc]{{{test('aaaaa','bbbb');}}}[/dpc]
+	 ***/
+		public function display_plugin_code($x,$content=null){
+			$return = '';
+			for($i = 0; $i < strlen($content); $i++) {
+			    $return .= '&#x'.bin2hex(substr($content, $i, 1)).';';
+			}
+			return $return;
+		} 
 	}
 
 	new Sample_shortcode();
