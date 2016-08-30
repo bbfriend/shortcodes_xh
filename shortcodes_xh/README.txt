@@ -6,34 +6,24 @@ set
 3:cmsimple/add_to_userfuncs.php ---> cmsimple/userfuncs.php
   * if you have already have a userfuncs.php, please copy the source code. Very simple code.
 
-4: Open cmsimple/tplfuncs.php
-   And Find  ¥¥¥in function content()" ,about Line540 
+4: Open cmsimple/function.php
+   And Find  ¥¥¥in evaluate_scripting" ,about Line340 
  
-        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
+            return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);
 
    1 line added to the previous/Before 
 
-		$c[$s] = do_shortcode($c[$s]); // Add for shortcode_xh
+	$text = do_shortcode($text); // Add for shortcode_xh
 
 
 ======== Result (final code) New function content() =========================
-function content()
+function evaluate_scripting($text, $compat = true)
 {
-    global $s, $o, $c, $edit,  $cf ; 
+// @codingStandardsIgnoreEnd
 
-    if (!($edit && XH_ADM) && $s > -1) {
-        if (isset($_GET['search'])) {
-            $search = XH_hsc(stsl($_GET['search']));
-            $words = explode(' ', $search);
-            $c[$s] = XH_highlightSearchWords($words, $c[$s]);
-        }
+	$text = do_shortcode($text); // Add for shortcode_xh
 
-        $c[$s] = do_shortcode($c[$s]);// Add for shortcode_xh
-
-        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
-    } else {
-        return $o;
-    }
+    return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);
 }
 
 
