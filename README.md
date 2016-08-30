@@ -1,5 +1,7 @@
 # shortcodes_xh
-This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">WordPress shortcode syntax</a> in CMSimple_XH. Supports enclosing shortcodes such as [myshortcode]content[/myshortcode]
+This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">WordPress shortcode syntax</a> in CMSimple_XH. Supports enclosing shortcodes such as [myshortcode]content[/myshortcode]   
+
+* 2016/08 Change : Do Shortcode before cmsimple_plugins
   
 1:Unzip the distribution on your computer.  
 2:Upload the whole directory to your server into the CMSimple_XH directory.   
@@ -7,7 +9,7 @@ This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcod
 ◦cmsimple/add_to_userfuncs.php ---> cmsimple/userfuncs.php  
  * if you have already have a userfuncs.php, please copy the source code. Very simple code.  
 
-3:.Open cmsimple/function.php  ( 2016/08 Change : Do Shortcode before cmsimple_plugins)
+3:.Open cmsimple/function.php  ( 2016/08 Change : Do Shortcode before cmsimple_plugins)   
    And Find in function evaluate_scripting()" ,about Line340 
  
         return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);
@@ -50,7 +52,8 @@ global $badcow_shortcode
  
  
    
-Original :Badcow/Shortcodes https://github.com/Badcow/Shortcodes  
+Original :Badcow/Shortcodes https://github.com/Badcow/Shortcodes   
+Forum : http://cmsimpleforum.com/viewtopic.php?f=29&t=9961 
 
 
 
