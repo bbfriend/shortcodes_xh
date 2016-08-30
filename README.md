@@ -7,14 +7,14 @@ This plugin is to use the familiar <a href="https://codex.wordpress.org/Shortcod
 ◦cmsimple/add_to_userfuncs.php ---> cmsimple/userfuncs.php  
  * if you have already have a userfuncs.php, please copy the source code. Very simple code.  
 
-3:.Open cmsimple/tplfuncs.php  
-   And Find in function content()" ,about Line540 
+3:.Open cmsimple/function.php  ( 2016/08 Change : Do Shortcode before cmsimple_plugins)
+   And Find in function evaluate_scripting()" ,about Line340 
  
-        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
+        return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);
 
    1 line added to the previous/Before 
 
-		$c[$s] = do_shortcode($c[$s]); // Add for shortcode_xh
+		$text = do_shortcode($text); // Add for shortcode_xh
 
 ## Usage  See..
 ◦ <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Wordpress Shortcode API </a>  
