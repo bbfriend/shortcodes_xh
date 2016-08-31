@@ -65,35 +65,25 @@ ul.nav a { zoom: 1; }
           <li>plugins/shortcodes_xh/* ----&gt; plugins/shortcodes_xh/*.</li>
         </ul>
         </li>
-        <li><font COLOR="#ff0000">Open cmsimple/tplfuncs.php</font><font COLOR="#cc0000"> </font><br>
-        <font COLOR="#ff0000">And Find  ･･･in function content()&quot; ,about Line540 </font><br>
+        <li><font COLOR="#ff0000">Open cmsimple/function.php</font><font COLOR="#cc0000"> </font><br>
+        <font COLOR="#ff0000">And Find  ･･･in function evaluate_scripting()&quot; ,about Line340 </font><br>
  <br>
-        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);<br>
+        return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);<br>
 <br>
         <font COLOR="#ff0000">1 line added to the previous/Before </font><br>
 <br>
-		$c[$s] = do_shortcode($c[$s]); // Add for shortcode_xh<br>
+		$text = do_shortcode($text); // Add for shortcode_xh<br>
 <br>
 <br>
-        = Result (final code) New function content() ===========
+        = Result (final code) New function evaluate_scripting() ===========
 <pre>
-function content()
+function evaluate_scripting($text, $compat = true)
 {
-    global $s, $o, $c, $edit,  $cf ; 
+// @codingStandardsIgnoreEnd
 
-    if (!($edit && XH_ADM) && $s > -1) {
-        if (isset($_GET['search'])) {
-            $search = XH_hsc(stsl($_GET['search']));
-            $words = explode(' ', $search);
-            $c[$s] = XH_highlightSearchWords($words, $c[$s]);
-        }
+	$text = do_shortcode($text); // Add for shortcode_xh
 
-        $c[$s] = do_shortcode($c[$s]);// Add for shortcode_xh
-
-        return $o . preg_replace('/#CMSimple (.*?)#/is', '', $c[$s]);
-    } else {
-        return $o;
-    }
+    return evaluate_cmsimple_scripting(evaluate_plugincall($text), $compat);
 }</pre></li>
       </ol>
       <h4>&nbsp;</h4>
