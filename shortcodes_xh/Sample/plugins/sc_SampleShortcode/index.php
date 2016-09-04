@@ -125,6 +125,9 @@ EOS;
 	 ***/
 		public function display_plugin_code($x,$content=null){
 			$return = '';
+
+			$content = htmlspecialchars_decode($content);
+
 			for($i = 0; $i < strlen($content); $i++) {
 			    $return .= '&#x'.bin2hex(substr($content, $i, 1)).';';
 			}
