@@ -60,7 +60,7 @@ if ( ! class_exists( 'Sample_shortcode' ) ) { //redeclare Check
 
 
 
-	/** [y_url href=Åhhttp://www.example.comÅh]Site[/y_url] ***/
+	/** [y_url href="http://www.example.com"]Site[/y_url] ***/
 		public function myUrl($atts, $content = null) {
 			extract(
 				shortcode_atts(
@@ -128,8 +128,16 @@ EOS;
 
 			$content = htmlspecialchars_decode($content);
 
-			for($i = 0; $i < strlen($content); $i++) {
-			    $return .= '&#x'.bin2hex(substr($content, $i, 1)).';';
+			for($i = 0; $i < utf8_strlen($content); $i++) {
+//			    $return .= '&#x'.bin2hex(utf8_substr($content, $i, 1)).';';
+
+				$char = utf8_substr($content, $i, 1);
+				if(preg_match('/[][}{)(!"#$%&\'~|\*+,\/@.\^<>`;:?_=\\\\-]/', $char)){
+					$return .= '&#x'.bin2hex( $char ).';';
+				}else{
+					$return .= $char;
+				}
+
 			}
 			return $return;
 		} 
