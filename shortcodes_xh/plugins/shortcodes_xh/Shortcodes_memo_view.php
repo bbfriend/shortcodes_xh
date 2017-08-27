@@ -22,9 +22,12 @@ function Shortcodes_memo_view()
 {
     global $plugin_tx, $pth,$plugin_cf;
 
-	require_once($pth['folder']['plugins'] .'utf8/str_ireplace.php');
+//	require_once($pth['folder']['plugins'] .'utf8/str_ireplace.php');
 
-	$var = "<b>** " . $plugin_tx['shortcodes_xh']['memo'] ." **</b>". tag('br') . utf8_ireplace("\n",'<br>',$plugin_cf['shortcodes_xh']['tab_SimpleMemo']);
+//	$var = "<b>** " . $plugin_tx['shortcodes_xh']['memo'] ." **</b>". tag('br') . utf8_ireplace("\n",'<br>',$plugin_cf['shortcodes_xh']['tab_SimpleMemo']);
+
+	// UTF-8 File 
+	$var = "<b>** " . $plugin_tx['shortcodes_xh']['memo'] ." **</b>". tag('br') . str_replace("\n",'<br>',$plugin_cf['shortcodes_xh']['tab_SimpleMemo']);
     return $var;
 }
 
