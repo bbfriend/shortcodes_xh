@@ -6,7 +6,7 @@
  * @package	shortcodes_xh
  * @copyright	Copyright (c) 2015 T.Uchiyama <http://cmsimple-jp.org/>
  * @license	http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @version 1.0.1
+ * @version 1.0.2
  * @link	http://cmsimple-jp.org
  */
 
@@ -50,7 +50,9 @@ function shortcodes_xh_version()
 /*
  * Handle the plugin administration.
  */
-if (isset($shortcodes_xh) && $shortcodes_xh == 'true') {
+//if (isset($shortcodes_xh) && $shortcodes_xh == 'true') {
+if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('shortcodes_xh') // >=Ver1.7 
+    || @$shortcodes_xh == 'true' ){ // < Ver1.6
 //    $o .= print_plugin_admin('on'); //Returns the plugin menu.
 
 //    if ($admin == 'plugin_config' || $admin == 'plugin_language') {

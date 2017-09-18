@@ -30,7 +30,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 /**
  * The plugin version.
  */
-define('SHORTCODES_XH_VERSION', '1.01');
+define('SHORTCODES_XH_VERSION', '1.02');
 
 /*
  * Add a tab for admin-menu.
